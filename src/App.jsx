@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./styles.css";
 
-// タスクの削除より開始
+// タスクの完了機能より開始
 export const App = () => {
   // todoテキスト内がはじめは空っぽ
   const [todoText, settodoText] = useState([""]);
