@@ -14,6 +14,12 @@ export const App = () => {
   // 文字を入力したら、値を取得する
   const onChangetodoText = (event) => settodoText(event.target.value);
 
+  const onClickDelete = (index) => {
+    const newTodos = [...incompleteTodos];
+    newTodos.splice(index, 1);
+    setincompleteTodos(newTodos);
+  };
+
   // 追加を押したときのアクションを設定
   const onClickadd = () => {
     // 空白で追加を押した場合、追加作業を行わない
@@ -40,12 +46,12 @@ export const App = () => {
         <p className="title">未完了のTODO</p>
         <ul>
           {/* mapを使う時、、バックで差分のみのレンダリングをしているため、keyを使って場所の設定が必要  */}
-          {incompleteTodos.map((todo) => {
+          {incompleteTodos.map((todo, index) => {
             return (
               <div key={todo} className="list-row">
                 <li>{todo}</li>
                 <button>完了</button>
-                <button>削除</button>
+                <button onClick={() => onClickDelete(index)}>削除</button>
               </div>
             );
           })}
