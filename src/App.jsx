@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./styles.css";
+// データの更新
 
 // タスクの削除より開始
 export const App = () => {
