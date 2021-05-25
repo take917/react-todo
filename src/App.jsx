@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./styles.css";
 
-// タスクの削除より開始
+// タスクの完了より開始
 // 変数名をキャメルケースへ
 export const App = () => {
   // todoテキスト内がはじめは空っぽ
