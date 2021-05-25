@@ -25,6 +25,12 @@ export const App = () => {
     // 追加の部分にデータが残っているので、消去
     setTodoText("");
   };
+
+  const onClickDelete = (index) => {
+    const newTodos = [...inCompleteTodos];
+    newTodos.splice(index, 1);
+    setinCompleteTodos(newTodos);
+  };
   return (
     <>
       {/* classNameを当てることで、CSSのスタイルを適用している */}
@@ -41,12 +47,12 @@ export const App = () => {
         <p className="title">未完了のTODO</p>
         <ul>
           {/* mapを使う時、、バックで差分のみのレンダリングをしているため、keyを使って場所の設定が必要  */}
-          {inCompleteTodos.map((todo) => {
+          {inCompleteTodos.map((todo, index) => {
             return (
               <div key={todo} className="list-row">
                 <li>{todo}</li>
                 <button>完了</button>
-                <button>削除</button>
+                <button onClick={() => onClickDelete(index)}>削除</button>
               </div>
             );
           })}
