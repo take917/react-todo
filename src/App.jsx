@@ -1,34 +1,29 @@
 import React, { useState } from "react";
 import "./styles.css";
 
-// タスクの完了機能より開始
+// タスクの削除より開始
+// 変数名をキャメルケースへ
 export const App = () => {
   // todoテキスト内がはじめは空っぽ
-  const [todoText, settodoText] = useState([""]);
+  const [todoText, setTodoText] = useState([""]);
   // incompleteの部分にデータを反映
-  const [incompleteTodos, setincompleteTodos] = useState([
+  const [inCompleteTodos, setinCompleteTodos] = useState([
     "ああああ",
     "いいいい"
   ]);
-  const [completeTodos, setcompleteTodos] = useState(["うううう"]);
+  const [completeTodos, setCompleteTodos] = useState(["うううう"]);
   // 文字を入力したら、値を取得する
-  const onChangetodoText = (event) => settodoText(event.target.value);
-
-  const onClickDelete = (index) => {
-    const newTodos = [...incompleteTodos];
-    newTodos.splice(index, 1);
-    setincompleteTodos(newTodos);
-  };
+  const onChangetodoText = (event) => setTodoText(event.target.value);
 
   // 追加を押したときのアクションを設定
   const onClickadd = () => {
     // 空白で追加を押した場合、追加作業を行わない
     if (todoText === "") return;
     // 入力した内容を新しく追加 配列形式で実施
-    const newTodos = [...incompleteTodos, todoText];
-    setincompleteTodos(newTodos);
+    const newTodos = [...inCompleteTodos, todoText];
+    setinCompleteTodos(newTodos);
     // 追加の部分にデータが残っているので、消去
-    settodoText("");
+    setTodoText("");
   };
   return (
     <>
@@ -46,12 +41,12 @@ export const App = () => {
         <p className="title">未完了のTODO</p>
         <ul>
           {/* mapを使う時、、バックで差分のみのレンダリングをしているため、keyを使って場所の設定が必要  */}
-          {incompleteTodos.map((todo, index) => {
+          {inCompleteTodos.map((todo) => {
             return (
               <div key={todo} className="list-row">
                 <li>{todo}</li>
                 <button>完了</button>
-                <button onClick={() => onClickDelete(index)}>削除</button>
+                <button>削除</button>
               </div>
             );
           })}
@@ -70,7 +65,6 @@ export const App = () => {
           })}
         </ul>
       </div>
-      <div></div>
     </>
   );
 };
