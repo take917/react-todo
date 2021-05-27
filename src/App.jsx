@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./styles.css";
 
-// タスクの完了より開始
+// タスクを戻す機能より開始
 // 変数名をキャメルケースへ
 export const App = () => {
   // todoテキスト内がはじめは空っぽ
@@ -31,6 +31,15 @@ export const App = () => {
     newTodos.splice(index, 1);
     setinCompleteTodos(newTodos);
   };
+
+  const onClickComplete = (index) => {
+    const newIncompleteTodos = [...inCompleteTodos];
+    newIncompleteTodos.splice(index, 1);
+
+    const newCompleteTodos = [...completeTodos, inCompleteTodos[index]];
+    setinCompleteTodos(newIncompleteTodos);
+    setCompleteTodos(newCompleteTodos);
+  };
   return (
     <>
       {/* classNameを当てることで、CSSのスタイルを適用している */}
@@ -51,7 +60,7 @@ export const App = () => {
             return (
               <div key={todo} className="list-row">
                 <li>{todo}</li>
-                <button>完了</button>
+                <button onClick={() => onClickComplete(index)}>完了</button>
                 <button onClick={() => onClickDelete(index)}>削除</button>
               </div>
             );
