@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./styles.css";
 
-// タスクを戻す機能より開始
+// コンポーネント化より開始
 // 変数名をキャメルケースへ
 export const App = () => {
   // todoテキスト内がはじめは空っぽ
