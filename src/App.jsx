@@ -7,11 +7,8 @@ export const App = () => {
   // todoテキスト内がはじめは空っぽ
   const [todoText, setTodoText] = useState([""]);
   // incompleteの部分にデータを反映
-  const [inCompleteTodos, setinCompleteTodos] = useState([
-    "ああああ",
-    "いいいい"
-  ]);
-  const [completeTodos, setCompleteTodos] = useState(["うううう"]);
+  const [inCompleteTodos, setinCompleteTodos] = useState([]);
+  const [completeTodos, setCompleteTodos] = useState([]);
   // 文字を入力したら、値を取得する
   const onChangetodoText = (event) => setTodoText(event.target.value);
 
@@ -39,6 +36,15 @@ export const App = () => {
     const newCompleteTodos = [...completeTodos, inCompleteTodos[index]];
     setinCompleteTodos(newIncompleteTodos);
     setCompleteTodos(newCompleteTodos);
+  };
+
+  const onClickBack = (index) => {
+    const newCompleteTodos = [...completeTodos];
+    newCompleteTodos.splice(index, 1);
+
+    const newIncompleteTodos = [...inCompleteTodos, completeTodos[index]];
+    setCompleteTodos(newCompleteTodos);
+    setinCompleteTodos(newIncompleteTodos);
   };
   return (
     <>
@@ -70,11 +76,11 @@ export const App = () => {
       <div className="complete-area">
         <p className="title">完了のTODO</p>
         <ul>
-          {completeTodos.map((todo) => {
+          {completeTodos.map((todo, index) => {
             return (
               <div key={todo} className="list-row">
                 <li>{todo}</li>
-                <button>戻す</button>
+                <button onClick={() => onClickBack(index)}>戻す</button>
               </div>
             );
           })}
