@@ -8,6 +8,7 @@ import { CompleteTodos } from "./components/CompleteTodos";
 
 export const App = () => {
   // 各領域のデータをセット
+  //  const [状態の変数,変更するための関数] = useState()
   const [todoText, setTodoText] = useState([]);
   const [incompleteTodos, setinCompleteTodos] = useState([]);
   const [completeTodos, setCompleteTodos] = useState([]);
